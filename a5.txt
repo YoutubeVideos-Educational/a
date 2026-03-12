@@ -1,0 +1,96 @@
+✅ EXPERIMENT 5 — Left Recursion + Left Factoring (Single Program)
+Step 1 — go to folder
+cd ~/compiler_lab
+Step 2 — create file
+nano exp5.c
+Step 3 — paste code
+#include<stdio.h>
+#include<string.h>
+
+int main()
+{
+    char p[20];
+    char alpha[10], beta[10];
+    int i, j = 0;
+
+    printf("Enter production (Example E=E+T|T or A=ab|ac): ");
+    scanf("%s", p);
+
+    char nt = p[0];
+
+    /* ---------- LEFT RECURSION ---------- */
+
+    if(p[2] == nt)
+    {
+        j = 0;
+
+        for(i = 3; p[i] != '|'; i++)
+            alpha[j++] = p[i];
+
+        alpha[j] = '\0';
+
+        j = 0;
+
+        for(i = i + 1; p[i] != '\0'; i++)
+            beta[j++] = p[i];
+
+        beta[j] = '\0';
+
+        printf("\nLeft Recursion Removed:\n");
+
+        printf("%c -> %s%c'\n", nt, beta, nt);
+        printf("%c' -> %s%c' | e\n", nt, alpha, nt);
+
+        return 0;
+    }
+
+    /* ---------- LEFT FACTORING ---------- */
+
+    if(p[2] == p[5])
+    {
+        printf("\nLeft Factoring Done:\n");
+
+        printf("%c -> %c%c'\n", nt, p[2], nt);
+        printf("%c' -> %c | %c\n", nt, p[3], p[6]);
+
+        return 0;
+    }
+
+    printf("No Left Recursion or Left Factoring needed\n");
+
+    return 0;
+}
+
+Save:
+
+CTRL + O
+ENTER
+CTRL + X
+Step 4 — compile
+gcc exp5.c -o exp5
+Step 5 — run
+./exp5
+✅ Example 1 — Left Recursion
+
+Input
+
+E=E+T|T
+
+Output
+
+Left Recursion Removed:
+
+E -> TE'
+E' -> +TE' | e
+✅ Example 2 — Left Factoring
+
+Input
+
+A=ab|ac
+
+Output
+
+Left Factoring Done:
+
+A -> aA'
+A' -> b | c
