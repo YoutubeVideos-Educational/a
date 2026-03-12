@@ -64,3 +64,58 @@ bison -d calc.y
 flex calc.l
 gcc y.tab.c lex.yy.c -lfl -o calc
 ./calc
+
+============================
+EXACT INPUT TO GIVE
+============================
+
+✅ Example 1 — Addition
+
+When program runs (it waits for input, no prompt shown):
+
+Type EXACTLY this and press ENTER:
+  3+5
+
+Expected Output:
+  8
+
+---
+
+✅ Example 2 — Subtraction
+
+Run the program again:
+  ./calc
+
+Type EXACTLY this and press ENTER:
+  10-4
+
+Expected Output:
+  6
+
+---
+
+✅ Example 3 — Multiplication
+
+Run the program again:
+  ./calc
+
+Type EXACTLY this and press ENTER:
+  6*7
+
+Expected Output:
+  42
+
+---
+
+✅ Example 4 — Division
+
+Run the program again:
+  ./calc
+
+Type EXACTLY this and press ENTER:
+  20/5
+
+Expected Output:
+  4
+
+NOTE: Press ENTER after typing the expression. The program exits after one calculation.

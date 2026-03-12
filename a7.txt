@@ -99,17 +99,40 @@ Step 4 — compile
 gcc exp7.c -o exp7
 Step 5 — run
 ./exp7
-✅ Example
 
-Input
+============================
+EXACT INPUT TO GIVE
+============================
 
-2
-E=TR
-T=i
-E
-E
+✅ Example — FIRST and FOLLOW
 
-Output
+The program asks multiple inputs one by one. Here is exactly what to type at each step:
 
-FIRST = i
-FOLLOW = $
+Step A: Program shows:
+  Enter number of productions:
+
+Type EXACTLY this and press ENTER:
+  2
+
+Step B: Program shows:
+  Enter productions (E=TR):
+
+Type EXACTLY this and press ENTER (one per line):
+  E=TR
+  T=i
+
+Step C: Program shows:
+  Find FIRST of:
+
+Type EXACTLY this and press ENTER:
+  E
+
+Step D: Program shows:
+  Find FOLLOW of:
+
+Type EXACTLY this and press ENTER:
+  E
+
+Expected Output:
+  FIRST = i
+  FOLLOW = $

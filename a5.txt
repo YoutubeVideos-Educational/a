@@ -70,27 +70,38 @@ Step 4 — compile
 gcc exp5.c -o exp5
 Step 5 — run
 ./exp5
+
+============================
+EXACT INPUT TO GIVE
+============================
+
 ✅ Example 1 — Left Recursion
 
-Input
+When program shows:
+  Enter production (Example E=E+T|T or A=ab|ac):
 
-E=E+T|T
+Type EXACTLY this and press ENTER:
+  E=E+T|T
 
-Output
+Expected Output:
+  Left Recursion Removed:
+  E -> TE'
+  E' -> +TE' | e
 
-Left Recursion Removed:
+---
 
-E -> TE'
-E' -> +TE' | e
 ✅ Example 2 — Left Factoring
 
-Input
+Run the program again:
+  ./exp5
 
-A=ab|ac
+When program shows:
+  Enter production (Example E=E+T|T or A=ab|ac):
 
-Output
+Type EXACTLY this and press ENTER:
+  A=ab|ac
 
-Left Factoring Done:
-
-A -> aA'
-A' -> b | c
+Expected Output:
+  Left Factoring Done:
+  A -> aA'
+  A' -> b | c

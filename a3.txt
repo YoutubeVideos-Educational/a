@@ -1,0 +1,120 @@
+✅ EXPERIMENT 3 — Lexical Analyzer using Flex
+Step 1 — create file
+nano exp3.l
+Step 2 — paste code
+%{
+#include<stdio.h>
+%}
+
+%%
+"int"|"float"|"char"|"double"|"if"|"else"|"while"|"for"|"return"
+        { printf("Keyword: %s\n", yytext); }
+
+[0-9]+  { printf("Number: %s\n", yytext); }
+
+[a-zA-Z_][a-zA-Z0-9_]*
+        { printf("Identifier: %s\n", yytext); }
+
+"+"|"-"|"*"|"/"|"=" 
+        { printf("Operator: %s\n", yytext); }
+
+";"|","|"("|")"|"{"
+        { printf("Special Symbol: %s\n", yytext); }
+
+[ \t\n] ;
+
+. { printf("Unknown: %s\n", yytext); }
+
+%%
+
+int main()
+{
+    printf("Enter the code:\n");
+    yylex();
+    return 0;
+}
+
+int yywrap()
+{
+    return 1;
+}
+
+Save:
+
+CTRL + O
+ENTER
+CTRL + X
+Step 3 — compile
+flex exp3.l
+gcc lex.yy.c -o exp3
+Step 4 — run
+./exp3
+
+============================
+EXACT INPUT TO GIVE
+============================
+
+✅ Example 1 — Simple variable declaration
+
+When program shows:
+  Enter the code:
+
+Type EXACTLY this and press ENTER:
+  int a = 5;
+
+Then press CTRL + D to end input.
+
+Expected Output:
+  Keyword: int
+  Identifier: a
+  Operator: =
+  Number: 5
+  Special Symbol: ;
+
+---
+
+✅ Example 2 — If statement
+
+Run the program again:
+  ./exp3
+
+When program shows:
+  Enter the code:
+
+Type EXACTLY this and press ENTER:
+  if x = 10;
+
+Then press CTRL + D to end input.
+
+Expected Output:
+  Keyword: if
+  Identifier: x
+  Operator: =
+  Number: 10
+  Special Symbol: ;
+
+---
+
+✅ Example 3 — Function-like input
+
+Run the program again:
+  ./exp3
+
+When program shows:
+  Enter the code:
+
+Type EXACTLY this and press ENTER:
+  float sum = a + b;
+
+Then press CTRL + D to end input.
+
+Expected Output:
+  Keyword: float
+  Identifier: sum
+  Operator: =
+  Identifier: a
+  Operator: +
+  Identifier: b
+  Special Symbol: ;
+
+NOTE: After typing input, press CTRL + D to signal end of input (EOF).

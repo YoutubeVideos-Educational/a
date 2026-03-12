@@ -1,0 +1,111 @@
+✅ EXPERIMENT 4 — Word, Line & Character Counter using Flex
+Step 1 — create file
+nano exp4.l
+Step 2 — paste code
+%{
+#include<stdio.h>
+
+int lines = 0;
+int words = 0;
+int characters = 0;
+%}
+
+%%
+\n        { lines++; characters++; }
+
+[ \t]+    { characters++; }
+
+[a-zA-Z0-9]+   { words++; characters++; }
+
+.         { characters++; }
+%%
+
+int main()
+{
+    printf("Enter text:\n");
+    yylex();
+
+    printf("\nLines = %d\n", lines);
+    printf("Words = %d\n", words);
+    printf("Characters = %d\n", characters);
+
+    return 0;
+}
+
+int yywrap()
+{
+    return 1;
+}
+
+Save:
+
+CTRL + O
+ENTER
+CTRL + X
+Step 3 — compile
+flex exp4.l
+gcc lex.yy.c -o exp4
+Step 4 — run
+./exp4
+
+============================
+EXACT INPUT TO GIVE
+============================
+
+✅ Example 1 — Single line
+
+When program shows:
+  Enter text:
+
+Type EXACTLY this and press ENTER:
+  hello world
+
+Then press CTRL + D to end input.
+
+Expected Output:
+  Lines = 1
+  Words = 2
+  Characters = 3
+
+---
+
+✅ Example 2 — Multiple lines
+
+Run the program again:
+  ./exp4
+
+When program shows:
+  Enter text:
+
+Type EXACTLY this (press ENTER after each line):
+  hi
+  how are you
+
+Then press CTRL + D to end input.
+
+Expected Output:
+  Lines = 2
+  Words = 4
+  Characters = 6
+
+---
+
+✅ Example 3 — Single word
+
+Run the program again:
+  ./exp4
+
+When program shows:
+  Enter text:
+
+Type EXACTLY this and press ENTER:
+  compiler
+
+Then press CTRL + D to end input.
+
+Expected Output:
+  Lines = 1
+  Words = 1
+  Characters = 2
+
+NOTE: After typing input, press CTRL + D to signal end of input (EOF). The program then prints the counts.
